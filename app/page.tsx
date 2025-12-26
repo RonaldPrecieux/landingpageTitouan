@@ -109,7 +109,7 @@ export default function SuapsMethodPage() {
             <div className="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center text-white">
               <Activity size={18} />
             </div>
-            <span>MÉTHODE SUAPS</span>
+            <span>Titouan BodyFit</span>
           </div>
           <Button onClick={scrollToForm} size="sm" className="bg-indigo-600 hover:bg-indigo-700 font-semibold">
             Accès Étudiant
@@ -433,9 +433,9 @@ export default function SuapsMethodPage() {
         <div className="container mx-auto px-4 text-center">
            <div className="flex justify-center items-center gap-2 mb-4 text-white font-bold text-xl">
               <Activity className="h-6 w-6" />
-              <span>MÉTHODE SUAPS</span>
+              <span>Titouan BodyFit</span>
            </div>
-           <p className="text-sm mb-8">La science au service de ta performance universitaire.</p>
+           <p className="text-sm mb-8">La science au service de ta performance musculaire.</p>
            <p className="text-xs opacity-50">&copy; {new Date().getFullYear()} Titouan Gay. Tous droits réservés.</p>
         </div>
       </footer>
