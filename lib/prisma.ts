@@ -1,4 +1,23 @@
 import "dotenv/config";
+// import { PrismaPg } from '@prisma/adapter-pg'
+// import { PrismaClient } from '../generated/prisma/client'
+
+// const globalForPrisma = globalThis as unknown as {
+//   prisma: PrismaClient | undefined;
+// };
+
+// const adapter = new PrismaPg({ 
+//   connectionString: process.env.DATABASE_URL 
+// });
+
+// export const prisma = globalForPrisma.prisma ?? new PrismaClient({ adapter });
+
+// if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma;
+
+
+
+// Pas besoin de import "dotenv/config" avec Next.js
+import { Pool } from 'pg'
 import { PrismaPg } from '@prisma/adapter-pg'
 import { PrismaClient } from '../generated/prisma/client'
 
@@ -6,13 +25,15 @@ const globalForPrisma = globalThis as unknown as {
   prisma: PrismaClient | undefined;
 };
 
-const adapter = new PrismaPg({ 
-  connectionString: process.env.DATABASE_URL 
-});
+// Utilisation d'un Pool (recommandé pour pg adapter)
+const pool = new Pool({ connectionString: process.env.DATABASE_URL })
+const adapter = new PrismaPg(pool)
 
-export const prisma = globalForPrisma.prisma ?? new PrismaClient({ adapter });
+export const prisma = 
+  globalForPrisma.prisma ?? 
+  new PrismaClient({ 
+    adapter,
+    log: process.env.NODE_ENV === 'development' ? ['query', 'error', 'warn'] : ['error'],
+  });
 
 if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma;
-
-
-
